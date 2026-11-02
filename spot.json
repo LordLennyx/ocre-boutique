@@ -1,0 +1,89 @@
+{
+ "titre": "<em>Ocre</em>, boutique en ligne",
+ "type": "E-commerce · Boutique",
+ "sous_titre": "Catalogue, fiche produit, panier, paiement Mobile Money",
+ "couleur": "#c8772e",
+ "graine": 3,
+ "voix": [
+  [
+   3.3,
+   "Ocre, une boutique en ligne complète, pensée pour vendre,"
+  ],
+  [
+   10.5,
+   "filtres instantanés, fiche produit à variantes,"
+  ],
+  [
+   17.0,
+   "panier, code promo, et paiement par Mobile Money, ou par carte."
+  ]
+ ],
+ "etapes": [
+  {
+   "t": "wait",
+   "ms": 200
+  },
+  {
+   "t": "eval",
+   "js": "document.querySelector('#boutique').scrollIntoView({behavior:'smooth'})",
+   "pause": 1200
+  },
+  {
+   "t": "click",
+   "sel": "#grid .card:nth-child(1) .ph",
+   "pause": 900
+  },
+  {
+   "t": "click",
+   "sel": "#pg button:nth-child(2)",
+   "pause": 600
+  },
+  {
+   "t": "click",
+   "sel": "#qp",
+   "pause": 300
+  },
+  {
+   "t": "click",
+   "sel": "#addP",
+   "pause": 900
+  },
+  {
+   "t": "type",
+   "sel": "#pc",
+   "text": "BIENVENUE10",
+   "delay": 35,
+   "pause": 100
+  },
+  {
+   "t": "click",
+   "sel": "#pf button",
+   "pause": 800
+  },
+  {
+   "t": "click",
+   "sel": "#go",
+   "pause": 500
+  },
+  {
+   "t": "eval",
+   "js": "nom.value='Ruth Ngo Mbia';tel.value='699123456';mail.value='ruth@exemple.cm';adr.value='Bastos, rue 1.839, portail vert'",
+   "pause": 500
+  },
+  {
+   "t": "click",
+   "sel": "#nx",
+   "pause": 700
+  },
+  {
+   "t": "click",
+   "sel": "#nx",
+   "pause": 700
+  },
+  {
+   "t": "click",
+   "sel": "#nx",
+   "pause": 1600
+  }
+ ]
+}

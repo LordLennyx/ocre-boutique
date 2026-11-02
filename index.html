@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ocre — Céramiques façonnées à la main</title>
+<meta name="description" content="Ocre, atelier de céramique : vases, bols, tasses et pichets tournés à la main. Livraison au Cameroun et en Europe.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c8772e'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23efe7dc'/%3E%3C/svg%3E">
+<style>
+:root{--sand:#efe7dc;--card:#e6dccd;--paper:#f7f2ea;--ochre:#c8772e;--char:#232020;--mute:#7a7066;--line:#d6cab8;--sage:#7d8b6a}
+*{box-sizing:border-box;margin:0}
+body{background:var(--sand);color:var(--char);font:400 15.5px/1.55 'Work Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+h1,h2,h3,.bd{font-family:'Bodoni Moda',Georgia,serif;font-weight:400}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{width:min(1320px,100% - 40px);margin-inline:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 28px;background:var(--char);color:var(--paper);border:0;font-weight:500;letter-spacing:.04em;font-size:14px;text-transform:uppercase;transition:background .2s}
+.btn:hover{background:var(--ochre)}
+.btn.out{background:transparent;color:var(--char);box-shadow:inset 0 0 0 1px var(--char)}
+.btn.out:hover{background:var(--char);color:var(--paper)}
+.btn:disabled{opacity:.4;pointer-events:none}
+
+.top{background:var(--char);color:#d9cfc1;font-size:12.5px;text-align:center;padding:9px 12px;letter-spacing:.05em}
+.top b{color:#f0c38e;font-weight:600}
+header{position:sticky;top:0;z-index:40;background:rgba(239,231,220,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{height:72px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.nav .l{display:flex;gap:28px;font-size:14px;letter-spacing:.03em}
+.nav .l a:hover,.nav .l a.on{color:var(--ochre)}
+.logo{font:500 30px 'Bodoni Moda',serif;letter-spacing:.32em;padding-left:.32em}
+.nav .r{display:flex;justify-content:flex-end;gap:6px}
+.ico{width:42px;height:42px;border:0;background:transparent;display:grid;place-items:center;position:relative;border-radius:50%}
+.ico:hover{background:var(--card)}
+.ico .b{position:absolute;top:4px;right:2px;min-width:18px;height:18px;border-radius:9px;background:var(--ochre);color:#fff;font-size:11px;font-weight:600;display:grid;place-items:center;padding:0 4px;transform:scale(0);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.ico .b.on{transform:scale(1)}
+.search{position:absolute;inset:100% 0 auto;background:var(--paper);border-bottom:1px solid var(--line);padding:18px 0;display:none}
+.search.on{display:block}
+.search input{width:100%;border:0;background:transparent;font:400 28px 'Bodoni Moda',serif;outline:0}
+
+/* accueil */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100svh - 108px);border-bottom:1px solid var(--line)}
+.hero .txt{padding:60px 60px 60px 0;display:flex;flex-direction:column;justify-content:center}
+.kick{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ochre);font-weight:600}
+.hero h1{font-size:clamp(48px,6vw,96px);line-height:.98;letter-spacing:-.02em;margin:22px 0 26px}
+.hero h1 i{color:var(--ochre)}
+.hero p{max-width:28em;color:#4e463e;font-size:17px}
+.hero .cta{display:flex;gap:10px;margin-top:34px;flex-wrap:wrap}
+.hero .vis{background:var(--card);position:relative;overflow:hidden;display:grid;place-items:center}
+.hero .vis svg{width:78%;max-width:560px;height:auto}
+.hero .cap{position:absolute;left:28px;bottom:24px;font-size:13px;color:#5f564c}
+.hero .cap b{display:block;font:400 20px 'Bodoni Moda',serif;color:var(--char)}
+.usp{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.usp div{padding:26px 24px;border-right:1px solid var(--line);font-size:14px;color:#5a5148}
+.usp div:last-child{border:0}
+.usp b{display:block;color:var(--char);font-weight:600;margin-bottom:2px}
+
+/* catalogue */
+.shop{padding:70px 0 100px}
+.shead{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.shead h2{font-size:clamp(36px,4vw,54px);line-height:1}
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+select{font:inherit;font-size:14px;height:42px;padding:0 34px 0 14px;border:1px solid var(--line);background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23232020' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center;appearance:none;border-radius:0}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:44px}
+.filters{position:sticky;top:96px;align-self:start;display:grid;gap:30px}
+.filters h4{font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+.chk{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:14.5px;cursor:pointer}
+.chk input{appearance:none;width:16px;height:16px;border:1px solid var(--char);display:grid;place-items:center;margin:0}
+.chk input:checked{background:var(--char)}
+.chk input:checked::after{content:"";width:6px;height:6px;background:var(--paper)}
+.chk span{margin-left:auto;color:var(--mute);font-size:12.5px}
+.sw{display:flex;gap:9px;flex-wrap:wrap}
+.sw button{width:30px;height:30px;border-radius:50%;border:2px solid var(--sand);box-shadow:0 0 0 1px var(--line);transition:box-shadow .2s}
+.sw button.on{box-shadow:0 0 0 2px var(--char)}
+input[type=range]{width:100%;accent-color:var(--ochre)}
+.prange{display:flex;justify-content:space-between;font-size:13px;color:var(--mute)}
+.reset{background:none;border:0;text-decoration:underline;font-size:13.5px;padding:0;justify-self:start}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 22px}
+.card{position:relative;cursor:pointer}
+.card .ph{background:var(--card);aspect-ratio:4/5;display:grid;place-items:center;position:relative;overflow:hidden;transition:background .3s}
+.card:hover .ph{background:#ddd0bd}
+.card .ph svg{width:74%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ph svg{transform:scale(1.05) translateY(-2%)}
+.card .tag{position:absolute;top:14px;left:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--paper);padding:4px 9px;font-weight:600}
+.card .tag.low{background:var(--ochre);color:#fff}
+.heart{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(247,242,234,.8);display:grid;place-items:center}
+.heart.on svg{fill:var(--ochre);stroke:var(--ochre)}
+.quick{position:absolute;left:14px;right:14px;bottom:14px;transform:translateY(130%);transition:transform .35s cubic-bezier(.2,.7,.2,1);height:44px;font-size:12.5px}
+.card:hover .quick{transform:none}
+.card .meta{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.card h3{font-size:20px;line-height:1.2}
+.card .sub{font-size:13px;color:var(--mute)}
+.card .pr{font-weight:500;white-space:nowrap}
+.dots{display:flex;gap:5px;margin-top:8px}
+.dots i{width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.1)}
+.none{grid-column:1/-1;text-align:center;padding:80px 0;color:var(--mute)}
+
+/* fiche produit */
+.modal{position:fixed;inset:0;z-index:60;display:none}
+.modal.on{display:block}
+.veil{position:absolute;inset:0;background:rgba(35,32,32,.45);animation:fi .3s}
+@keyframes fi{from{opacity:0}}
+.pdp{position:absolute;inset:4vh 4vw;background:var(--paper);display:grid;grid-template-columns:1.1fr .9fr;overflow:auto;animation:up .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes up{from{opacity:0;transform:translateY(30px)}}
+.pdp .gal{background:var(--card);display:grid;place-items:center;position:relative;min-height:420px}
+.pdp .gal svg{width:66%;max-width:460px}
+.pdp .info{padding:52px 48px;display:flex;flex-direction:column;gap:22px}
+.pdp h2{font-size:42px;line-height:1.05}
+.pdp .pp{font-size:22px}
+.pdp .desc{color:#544b42}
+.x{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:var(--paper);z-index:2;font-size:22px}
+.lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:10px}
+.lbl span{text-transform:none;letter-spacing:0;font-weight:400;color:var(--mute);margin-left:6px}
+.qty{display:inline-flex;border:1px solid var(--char);height:52px}
+.qty button{width:46px;border:0;background:none;font-size:18px}
+.qty output{width:40px;display:grid;place-items:center;font-weight:600}
+.buy{display:flex;gap:10px}
+.buy .btn{flex:1}
+.spec{border-top:1px solid var(--line);font-size:14px}
+.spec div{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line)}
+.spec span{color:var(--mute)}
+
+/* panier */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--paper);z-index:70;transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+.drawer.on{transform:none;box-shadow:-30px 0 60px -20px rgba(0,0,0,.25)}
+.dveil{position:fixed;inset:0;background:rgba(35,32,32,.4);z-index:65;opacity:0;pointer-events:none;transition:opacity .3s}
+.dveil.on{opacity:1;pointer-events:auto}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid var(--line)}
+.dh h3{font-size:26px}
+.ship{padding:14px 26px;font-size:13px;background:var(--sand)}
+.bar{height:4px;background:var(--line);margin-top:8px}.bar i{display:block;height:100%;background:var(--ochre);transition:width .5s}
+.lines{flex:1;overflow:auto;padding:6px 26px}
+.line{display:grid;grid-template-columns:84px 1fr auto;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);animation:up .35s}
+.line .th{background:var(--card);aspect-ratio:4/5;display:grid;place-items:center}
+.line .th svg{width:80%}
+.line h4{font:400 18px 'Bodoni Moda',serif}
+.line small{color:var(--mute);display:block;margin:2px 0 10px}
+.line .qty{height:34px}.line .qty button{width:30px;font-size:15px}.line .qty output{width:26px;font-size:13px}
+.line .rm{background:none;border:0;font-size:12.5px;text-decoration:underline;color:var(--mute);display:block;margin-top:8px;padding:0}
+.df{padding:20px 26px 26px;border-top:1px solid var(--line);display:grid;gap:12px}
+.promo{display:flex;gap:8px}
+.promo input{flex:1;height:44px;border:1px solid var(--line);background:#fff;padding:0 12px;font:inherit;font-size:14px;text-transform:uppercase}
+.promo button{height:44px;padding:0 16px;border:1px solid var(--char);background:none;font-size:13px;font-weight:600}
+.pmsg{font-size:12.5px;min-height:1em;color:var(--sage)}
+.pmsg.e{color:#b4432c}
+.tot{display:flex;justify-content:space-between;font-size:14.5px}
+.tot.big{font:400 24px 'Bodoni Moda',serif;padding-top:8px;border-top:1px solid var(--line)}
+.empty{text-align:center;padding:70px 20px;color:var(--mute)}
+.empty svg{margin:0 auto 18px;opacity:.5}
+
+/* paiement */
+.co{position:absolute;inset:0;background:var(--sand);overflow:auto;animation:fi .3s}
+.cog{display:grid;grid-template-columns:1.2fr .8fr;min-height:100%}
+.cof{padding:40px 7vw 60px}
+.cof .logo{font-size:24px;display:block;margin-bottom:30px}
+.steps{display:flex;gap:8px;font-size:13px;margin-bottom:34px;flex-wrap:wrap}
+.steps span{color:var(--mute)}.steps span.on{color:var(--char);font-weight:600}.steps span.ok{color:var(--sage)}
+.fs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fs h3{grid-column:1/-1;font-size:28px;margin-bottom:4px}
+.f{display:grid;gap:6px;font-size:13px;font-weight:500}
+.f input,.f select{height:48px;border:1px solid var(--line);background:var(--paper);padding:0 14px;font:inherit;font-size:15px;font-weight:400;border-radius:0;width:100%}
+.f input:focus{outline:1.5px solid var(--char);outline-offset:-1px}
+.f.bad input{border-color:#b4432c}
+.full{grid-column:1/-1}
+.opt{grid-column:1/-1;display:grid;gap:10px}
+.opt label{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--paper);padding:16px 18px;cursor:pointer;font-size:14.5px}
+.opt label:has(input:checked){border-color:var(--char);box-shadow:inset 0 0 0 1px var(--char)}
+.opt input{accent-color:var(--char);width:18px;height:18px}
+.opt b{margin-left:auto;font-weight:600}
+.opt small{display:block;color:var(--mute)}
+.cob{display:flex;justify-content:space-between;align-items:center;margin-top:30px;gap:14px;flex-wrap:wrap}
+.cob .back{background:none;border:0;text-decoration:underline;font-size:14px}
+.err{color:#b4432c;font-size:13px;grid-column:1/-1;min-height:1em}
+.sum{background:var(--card);padding:40px 3vw}
+.sum .line{grid-template-columns:64px 1fr auto;padding:12px 0}
+.sum .tot{margin-top:10px}
+.done{text-align:center;max-width:520px;margin:8vh auto;padding:20px}
+.done .ok{width:84px;height:84px;border-radius:50%;background:var(--sage);display:grid;place-items:center;margin:0 auto 24px}
+.done h3{font-size:44px;margin-bottom:12px}
+.done code{font:600 15px ui-monospace,monospace;background:var(--paper);padding:5px 12px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,140%);background:var(--char);color:var(--paper);padding:14px 22px;font-size:14px;z-index:90;transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+.toast.on{transform:translate(-50%,0)}
+
+footer{background:var(--char);color:#b8ae9f;padding:70px 0 34px;font-size:14px}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:40px}
+.fg h5{color:var(--paper);font:400 18px 'Bodoni Moda',serif;margin-bottom:14px}
+.fg a{display:block;margin-bottom:7px}.fg a:hover{color:#f0c38e}
+.nl{display:flex;border-bottom:1px solid #6b625a}.nl input{flex:1;background:none;border:0;color:var(--paper);height:44px;font:inherit;outline:0}.nl button{background:none;border:0;color:#f0c38e}
+.cp{margin-top:56px;padding-top:22px;border-top:1px solid #3b3735;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12.5px}
+
+@media (max-width:1000px){
+  .nav{grid-template-columns:auto 1fr auto}.nav .l{display:none}.logo{font-size:24px}
+  .hero{grid-template-columns:1fr}.hero .txt{padding:50px 0}.hero .vis{min-height:420px}
+  .usp{grid-template-columns:1fr 1fr}.usp div:nth-child(2){border-right:0}.usp div{border-bottom:1px solid var(--line)}
+  .layout{grid-template-columns:1fr}.filters{position:static;grid-template-columns:1fr 1fr;gap:20px}
+  .grid{grid-template-columns:1fr 1fr;gap:26px 14px}
+  .card h3{font-size:17px}.quick{display:none}
+  .pdp{inset:0;grid-template-columns:1fr}.pdp .info{padding:30px 22px}
+  .cog{grid-template-columns:1fr}.sum{order:-1;padding:24px 20px}.cof{padding:30px 20px}
+  .fs{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="top">Livraison offerte dès <b>60 000 F</b> au Cameroun · Code <b>BIENVENUE10</b> : −10 % sur votre première commande</div>
+<header>
+  <div class="wrap nav">
+    <nav class="l"><a href="#boutique" data-cat="Vases">Vases</a><a href="#boutique" data-cat="Bols">Bols</a><a href="#boutique" data-cat="Tasses">Tasses</a><a href="#boutique" data-cat="Pichets">Pichets</a><a href="#atelier">L'atelier</a></nav>
+    <a class="logo" href="#" aria-label="Ocre, accueil">OCRE</a>
+    <div class="r">
+      <button class="ico" id="sBtn" aria-label="Rechercher"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8.5" cy="8.5" r="6.5"/><path d="m13.5 13.5 5 5"/></svg></button>
+      <button class="ico" id="wBtn" aria-label="Favoris"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 17s-7-4.3-7-9.2A3.8 3.8 0 0 1 10 5.6a3.8 3.8 0 0 1 7 2.2C17 12.7 10 17 10 17z"/></svg><span class="b" id="wN"></span></button>
+      <button class="ico" id="cBtn" aria-label="Panier"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h14l-1.3 11H4.3z"/><path d="M7 6a3 3 0 0 1 6 0"/></svg><span class="b" id="cN"></span></button>
+    </div>
+  </div>
+  <div class="search" id="search"><div class="wrap"><input id="q" placeholder="Rechercher une pièce, un émail…" aria-label="Rechercher"></div></div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div class="txt">
+      <span class="kick">Collection Saison sèche · 2026</span>
+      <h1>La terre, <i>tournée</i> lentement.</h1>
+      <p>Chaque pièce est façonnée à la main dans notre atelier, à partir d'argiles du Noun, puis émaillée et cuite deux fois. Aucune n'est tout à fait identique à sa voisine.</p>
+      <div class="cta"><a class="btn" href="#boutique">Découvrir la collection</a><a class="btn out" href="#atelier">L'atelier</a></div>
+    </div>
+    <div class="vis" id="heroVis"><div class="cap"><b>Vase Ndop, émail latérite</b>Pièce n° 14 sur 30</div></div>
+  </div>
+  <div class="wrap usp">
+    <div><b>Fait main</b>Tourné, émaillé, signé</div>
+    <div><b>Livraison soignée</b>Emballage sans plastique</div>
+    <div><b>Paiement local</b>Orange Money, MTN MoMo, carte</div>
+    <div><b>Casse garantie</b>Pièce remplacée sans frais</div>
+  </div>
+
+  <section class="wrap shop" id="boutique">
+    <div class="shead">
+      <h2>La collection</h2>
+      <div class="tools"><span id="count" style="font-size:14px;color:var(--mute)"></span>
+        <select id="sort" aria-label="Trier"><option value="pop">Les plus aimées</option><option value="new">Nouveautés</option><option value="asc">Prix croissant</option><option value="desc">Prix décroissant</option></select></div>
+    </div>
+    <div class="layout">
+      <aside class="filters">
+        <div><h4>Catégorie</h4><div id="cats"></div></div>
+        <div><h4>Émail</h4><div class="sw" id="glz"></div></div>
+        <div><h4>Prix maximum</h4><input type="range" id="price" min="8000" max="70000" step="1000" value="70000" aria-label="Prix maximum"><div class="prange"><span>8 000 F</span><b id="pv"></b></div></div>
+        <button class="reset" id="reset">Réinitialiser les filtres</button>
+      </aside>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="atelier" style="background:var(--char);color:var(--paper);padding:100px 0">
+    <div class="wrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:50px;align-items:center">
+      <div><span class="kick" style="color:#f0c38e">L'atelier</span><h2 style="font-size:clamp(36px,4vw,56px);line-height:1.05;margin:18px 0">Trois tours, un four, et beaucoup de patience.</h2></div>
+      <p style="color:#c9bfb1;font-size:17px">Ocre est né à Foumban, entre les ateliers des artisans du bronze et les marchés de poterie. Nous travaillons à quatre mains : Ruth tourne, Idriss émaille. Nos émaux sont préparés sur place, à base de cendres végétales et d'oxydes, ce qui donne ces nuances jamais tout à fait les mêmes.</p>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <div class="fg">
+    <div><h5>OCRE</h5><p>Céramiques façonnées à la main. Atelier ouvert sur rendez-vous.</p></div>
+    <div><h5>Boutique</h5><a href="#boutique">Toute la collection</a><a href="#boutique">Pièces uniques</a><a href="#boutique">Cartes cadeaux</a></div>
+    <div><h5>Aide</h5><a href="#">Livraison</a><a href="#">Retours</a><a href="#">Entretien</a></div>
+    <div><h5>La lettre de l'atelier</h5><p style="margin-bottom:10px">Une fois par mois, les nouvelles fournées.</p><form class="nl" onsubmit="event.preventDefault();toast('Merci, à très bientôt dans votre boîte.');this.reset()"><input type="email" required placeholder="Votre e-mail" aria-label="E-mail"><button>S'inscrire</button></form></div>
+  </div>
+  <div class="cp"><span>© 2026 Ocre — boutique de démonstration, aucune commande réelle</span><span>Design &amp; développement : Njundiyimun Béchard</span></div>
+</div></footer>
+
+<div class="modal" id="modal"><div class="veil" data-close></div><div id="mbody"></div></div>
+<div class="dveil" id="dveil"></div>
+<aside class="drawer" id="drawer" aria-label="Panier">
+  <div class="dh"><h3>Votre panier</h3><button class="ico" id="dClose" aria-label="Fermer">✕</button></div>
+  <div class="ship" id="ship"></div>
+  <div class="lines" id="lines"></div>
+  <div class="df" id="dfoot"></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const F=n=>Math.round(n).toLocaleString('fr-FR').replace(/ /g,' ')+' F';
+
+// ——— Émaux et silhouettes ———
+const GLAZE={laterite:['#b4532a','#7e3216','Latérite'],sable:['#e4d3b4','#c2a77e','Sable'],foret:['#3f5a45','#22362a','Forêt'],nuit:['#2b3242','#141821','Nuit'],celadon:['#a9c2b0','#7d9a86','Céladon'],miel:['#d79a3f','#a2661d','Miel']};
+// demi-profils : [x,y] du col vers le pied, x = rayon
+const SHAPES={
+  amphore:[[30,0],[26,18],[24,40],[52,90],[70,150],[62,215],[40,250],[36,262]],
+  bouteille:[[14,0],[13,60],[18,82],[54,120],[62,175],[56,235],[44,262]],
+  boule:[[34,40],[38,52],[64,90],[78,150],[70,210],[48,248],[40,262]],
+  haut:[[40,0],[38,40],[44,130],[46,200],[42,250],[38,262]],
+  bol:[[92,150],[90,170],[80,205],[60,240],[40,256],[36,262]],
+  coupe:[[100,175],[95,195],[72,228],[38,250],[30,262]],
+  tasse:[[50,120],[50,150],[48,220],[40,252],[38,262]],
+  pichet:[[46,40],[44,60],[52,120],[64,180],[58,235],[44,262]]
+};
+let uid=0;
+function vessel(shape,glaze,deco){
+  const p=SHAPES[shape],g=GLAZE[glaze],id='v'+(uid++),cx=120;
+  const pts=p.map(([x,y])=>[cx+x,y+20]);
+  let d=`M${cx-p[0][0]} ${p[0][1]+20}`;
+  const smooth=(arr)=>{let s='';for(let i=1;i<arr.length;i++){const [x0,y0]=arr[i-1],[x1,y1]=arr[i],my=(y0+y1)/2;s+=` C ${x0} ${my}, ${x1} ${my}, ${x1} ${y1}`}return s};
+  d+=` L ${pts[0][0]} ${pts[0][1]}`+smooth(pts);
+  const left=pts.map(([x,y])=>[2*cx-x,y]).reverse();
+  d+=` L ${left[0][0]} ${left[0][1]}`+smooth(left)+'Z';
+  const top=p[0][1]+20,rx=p[0][0],bot=p.at(-1)[1]+20;
+  const dipY=top+(bot-top)*.62;
+  let decoSvg='';
+  if(deco==='lignes')for(let i=0;i<5;i++)decoSvg+=`<path d="M0 ${top+(bot-top)*(.25+i*.07)} H240" stroke="${g[1]}" stroke-width="1.6" opacity=".55"/>`;
+  if(deco==='points')for(let r=0;r<4;r++)for(let c=0;c<14;c++)decoSvg+=`<circle cx="${c*18+(r%2)*9}" cy="${top+(bot-top)*(.3+r*.06)}" r="2.6" fill="${g[1]}" opacity=".6"/>`;
+  if(deco==='coulure'){let s=`M0 ${dipY}`;for(let x=0;x<=240;x+=20){const dy=(Math.sin(x*1.7)+1)*14;s+=` Q ${x+10} ${dipY+dy+18}, ${x+20} ${dipY}`}decoSvg+=`<path d="${s} V${bot+10} H0Z" fill="#cdb48e"/>`}
+  if(deco==='zigzag'){let s='';for(let x=0;x<=240;x+=16)s+=`${x},${top+(bot-top)*.36+((x/16)%2?10:-10)} `;decoSvg+=`<polyline points="${s}" fill="none" stroke="#efe7dc" stroke-width="3" opacity=".8"/>`}
+  const handle=shape==='tasse'?`<path d="M${cx+50} ${top+40} c34 0 34 70 -2 70" fill="none" stroke="url(#g${id})" stroke-width="11" stroke-linecap="round"/>`:shape==='pichet'?`<path d="M${cx+50} ${top+30} c48 6 44 110 4 128" fill="none" stroke="url(#g${id})" stroke-width="12" stroke-linecap="round"/><path d="M${cx-46} ${top} l-16 -10 l4 16z" fill="${g[0]}"/>`:'';
+  return `<svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <linearGradient id="g${id}" x1="0" x2="1"><stop offset="0" stop-color="${g[1]}"/><stop offset=".35" stop-color="${g[0]}"/><stop offset=".6" stop-color="${g[0]}"/><stop offset="1" stop-color="${g[1]}"/></linearGradient>
+  <radialGradient id="h${id}" cx=".32" cy=".3" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <clipPath id="c${id}"><path d="${d}"/></clipPath></defs>
+  <ellipse cx="${cx}" cy="${bot+4}" rx="${p.at(-1)[0]+30}" ry="7" fill="#000" opacity=".12"/>
+  ${handle}<path d="${d}" fill="url(#g${id})"/>
+  <g clip-path="url(#c${id})">${decoSvg}<rect x="0" y="${bot-12}" width="240" height="20" fill="#c9ad86"/><rect width="240" height="300" fill="url(#h${id})"/></g>
+  <ellipse cx="${cx}" cy="${top}" rx="${rx}" ry="${Math.max(3,rx*.16)}" fill="${g[1]}"/><ellipse cx="${cx}" cy="${top+1}" rx="${rx-3}" ry="${Math.max(2,rx*.13)}" fill="#1a1512" opacity=".55"/></svg>`;
+}
+
+// ——— Catalogue ———
+const P=[
+ {id:1,n:'Vase Ndop',c:'Vases',s:'amphore',g:['laterite','nuit','sable'],d:'coulure',p:48000,pop:98,nw:0,st:4,h:'32 cm'},
+ {id:2,n:'Bouteille Lom',c:'Vases',s:'bouteille',g:['foret','celadon'],d:'lignes',p:36000,pop:87,nw:1,st:12,h:'34 cm'},
+ {id:3,n:'Vase Mbam',c:'Vases',s:'boule',g:['miel','laterite'],d:'points',p:42000,pop:91,nw:1,st:2,h:'26 cm'},
+ {id:4,n:'Haut vase Sanaga',c:'Vases',s:'haut',g:['nuit','sable'],d:'zigzag',p:62000,pop:76,nw:0,st:6,h:'40 cm'},
+ {id:5,n:'Bol Kribi',c:'Bols',s:'bol',g:['celadon','sable','foret'],d:'lignes',p:14000,pop:95,nw:0,st:30,h:'Ø 18 cm'},
+ {id:6,n:'Coupe Wouri',c:'Bols',s:'coupe',g:['sable','miel'],d:'coulure',p:22000,pop:83,nw:1,st:9,h:'Ø 24 cm'},
+ {id:7,n:'Tasse Dschang',c:'Tasses',s:'tasse',g:['laterite','foret','nuit'],d:'points',p:9500,pop:99,nw:0,st:40,h:'25 cl'},
+ {id:8,n:'Tasse Bafut',c:'Tasses',s:'tasse',g:['sable','celadon'],d:'zigzag',p:10500,pop:80,nw:1,st:3,h:'30 cl'},
+ {id:9,n:'Pichet Noun',c:'Pichets',s:'pichet',g:['miel','foret'],d:'lignes',p:32000,pop:88,nw:0,st:7,h:'1 L'},
+ {id:10,n:'Bol Nyong',c:'Bols',s:'bol',g:['nuit','laterite'],d:'zigzag',p:16000,pop:72,nw:0,st:18,h:'Ø 20 cm'},
+ {id:11,n:'Pichet Menoua',c:'Pichets',s:'pichet',g:['celadon','sable'],d:'coulure',p:35000,pop:69,nw:1,st:5,h:'1,2 L'},
+ {id:12,n:'Bouteille Mungo',c:'Vases',s:'bouteille',g:['laterite','miel'],d:'points',p:38000,pop:78,nw:0,st:1,h:'34 cm'}
+];
+const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem('ocre-'+k))??d}catch{return d}},set:(k,v)=>{try{localStorage.setItem('ocre-'+k,JSON.stringify(v))}catch{}}};
+let cart=store.get('cart',[]),wish=store.get('wish',[]),promo=store.get('promo',null);
+const state={cats:new Set(),glz:null,max:70000,q:'',sort:'pop'};
+
+$('#heroVis').insertAdjacentHTML('afterbegin',vessel('amphore','laterite','coulure'));
+const cats=[...new Set(P.map(p=>p.c))];
+$('#cats').innerHTML=cats.map(c=>`<label class="chk"><input type="checkbox" value="${c}">${c}<span>${P.filter(p=>p.c===c).length}</span></label>`).join('');
+$('#glz').innerHTML=Object.entries(GLAZE).map(([k,v])=>`<button data-g="${k}" title="${v[2]}" aria-label="Émail ${v[2]}" style="background:linear-gradient(135deg,${v[0]},${v[1]})"></button>`).join('');
+
+function render(){
+  let list=P.filter(p=>(!state.cats.size||state.cats.has(p.c))&&(!state.glz||p.g.includes(state.glz))&&p.p<=state.max&&(!state.q||(p.n+' '+p.c+' '+p.g.map(g=>GLAZE[g][2]).join(' ')).toLowerCase().includes(state.q)));
+  list.sort({pop:(a,b)=>b.pop-a.pop,new:(a,b)=>b.nw-a.nw||b.pop-a.pop,asc:(a,b)=>a.p-b.p,desc:(a,b)=>b.p-a.p}[state.sort]);
+  $('#count').textContent=list.length+(list.length>1?' pièces':' pièce');
+  $('#pv').textContent=F(state.max);
+  $('#grid').innerHTML=list.length?list.map(p=>{const g=state.glz&&p.g.includes(state.glz)?state.glz:p.g[0];return `<article class="card" data-id="${p.id}">
+    <div class="ph">${vessel(p.s,g,p.d)}${p.st<=3?`<span class="tag low">Plus que ${p.st}</span>`:p.nw?'<span class="tag">Nouveau</span>':''}
+    <button class="heart ${wish.includes(p.id)?'on':''}" data-w="${p.id}" aria-label="Ajouter aux favoris"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 15.5s-6-3.7-6-8A3.3 3.3 0 0 1 9 5.6a3.3 3.3 0 0 1 6 1.9c0 4.3-6 8-6 8z"/></svg></button>
+    <button class="btn quick" data-add="${p.id}">Ajouter au panier</button></div>
+    <div class="meta"><div><h3>${p.n}</h3><span class="sub">${p.c} · ${p.h}</span></div><span class="pr">${F(p.p)}</span></div>
+    <div class="dots">${p.g.map(k=>`<i style="background:${GLAZE[k][0]}"></i>`).join('')}</div></article>`}).join(''):'<p class="none">Aucune pièce ne correspond. <button class="reset" onclick="resetF()">Tout afficher</button></p>';
+}
+function resetF(){state.cats.clear();state.glz=null;state.max=70000;state.q='';$('#q').value='';$('#price').value=70000;$$('#cats input').forEach(i=>i.checked=false);$$('#glz button').forEach(b=>b.classList.remove('on'));render()}
+$('#cats').onchange=e=>{e.target.checked?state.cats.add(e.target.value):state.cats.delete(e.target.value);render()};
+$('#glz').onclick=e=>{const b=e.target.closest('button');if(!b)return;state.glz=state.glz===b.dataset.g?null:b.dataset.g;$$('#glz button').forEach(x=>x.classList.toggle('on',x.dataset.g===state.glz));render()};
+$('#price').oninput=e=>{state.max=+e.target.value;render()};
+$('#sort').onchange=e=>{state.sort=e.target.value;render()};
+$('#reset').onclick=resetF;
+$('#q').oninput=e=>{state.q=e.target.value.trim().toLowerCase();render();if(state.q)$('#boutique').scrollIntoView({behavior:'smooth'})};
+$('#sBtn').onclick=()=>{$('#search').classList.toggle('on');$('#q').focus()};
+$$('.nav .l a[data-cat]').forEach(a=>a.onclick=()=>{resetF();state.cats.add(a.dataset.cat);$$('#cats input').forEach(i=>i.checked=i.value===a.dataset.cat);render()});
+$('#grid').onclick=e=>{
+  const w=e.target.closest('[data-w]'),a=e.target.closest('[data-add]'),c=e.target.closest('.card');
+  if(w){const id=+w.dataset.w;wish=wish.includes(id)?wish.filter(x=>x!==id):[...wish,id];store.set('wish',wish);w.classList.toggle('on');badges();toast(wish.includes(id)?'Ajouté à vos favoris':'Retiré des favoris');return}
+  if(a){const p=P.find(x=>x.id==a.dataset.add);add(p.id,p.g[0],1);return}
+  if(c)openP(+c.dataset.id);
+};
+$('#wBtn').onclick=()=>{if(!wish.length)return toast('Aucun favori pour l\'instant');resetF();state.q='';render();$$('#grid .card').forEach(c=>c.style.display=wish.includes(+c.dataset.id)?'':'none');$('#count').textContent=wish.length+' favori'+(wish.length>1?'s':'');$('#boutique').scrollIntoView({behavior:'smooth'})};
+
+// ——— Fiche produit ———
+const modal=$('#modal'),mbody=$('#mbody');
+function openP(id){
+  const p=P.find(x=>x.id===id);let g=p.g[0],q=1;
+  mbody.innerHTML=`<div class="pdp" role="dialog" aria-label="${p.n}"><button class="x" data-close aria-label="Fermer">✕</button>
+   <div class="gal" id="gal">${vessel(p.s,g,p.d)}</div>
+   <div class="info"><span class="kick">${p.c}</span><h2>${p.n}</h2><div class="pp">${F(p.p)}</div>
+   <p class="desc">Tourné à la main en grès du Noun, émaillé à la cendre, cuit à 1 260 °C. Les variations de teinte et les petites irrégularités font partie de la pièce : elles sont la trace du geste.</p>
+   <div><div class="lbl">Émail <span id="gn">${GLAZE[g][2]}</span></div><div class="sw" id="pg">${p.g.map((k,i)=>`<button data-g="${k}" class="${i?'':'on'}" aria-label="${GLAZE[k][2]}" style="background:linear-gradient(135deg,${GLAZE[k][0]},${GLAZE[k][1]})"></button>`).join('')}</div></div>
+   <div class="buy"><div class="qty"><button id="qm" aria-label="Moins">−</button><output id="qv">1</output><button id="qp" aria-label="Plus">+</button></div><button class="btn" id="addP">Ajouter · ${F(p.p)}</button></div>
+   <div class="spec"><div><span>Dimensions</span>${p.h}</div><div><span>Matière</span>Grès émaillé</div><div><span>Entretien</span>Lave-vaisselle, micro-ondes</div><div><span>Disponibilité</span>${p.st<=3?'Plus que '+p.st+' en stock':'En stock, expédié sous 48 h'}</div></div></div></div>`;
+  modal.classList.add('on');document.body.classList.add('lock');
+  $('#pg').onclick=e=>{const b=e.target.closest('button');if(!b)return;g=b.dataset.g;$$('#pg button').forEach(x=>x.classList.toggle('on',x===b));$('#gal').innerHTML=vessel(p.s,g,p.d);$('#gn').textContent=GLAZE[g][2]};
+  const upd=()=>{$('#qv').textContent=q;$('#addP').textContent='Ajouter · '+F(p.p*q)};
+  $('#qm').onclick=()=>{q=Math.max(1,q-1);upd()};$('#qp').onclick=()=>{q=Math.min(p.st,q+1);upd()};
+  $('#addP').onclick=()=>{add(p.id,g,q);closeM()};
+}
+function closeM(){modal.classList.remove('on');document.body.classList.remove('lock')}
+modal.onclick=e=>{if(e.target.closest('[data-close]'))closeM()};
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();closeD()}});
+
+// ——— Panier ———
+const SHIP_FREE=60000;
+function add(id,g,q){const l=cart.find(x=>x.id===id&&x.g===g);l?l.q+=q:cart.push({id,g,q});save();openD()}
+const save=()=>{store.set('cart',cart);store.set('promo',promo);badges();drawCart()};
+const sub=()=>cart.reduce((s,l)=>s+P.find(p=>p.id===l.id).p*l.q,0);
+const disc=()=>promo?Math.round(sub()*promo.pct/100):0;
+function badges(){const n=cart.reduce((s,l)=>s+l.q,0);$('#cN').textContent=n;$('#cN').classList.toggle('on',n>0);$('#wN').textContent=wish.length;$('#wN').classList.toggle('on',wish.length>0)}
+function drawCart(){
+  const s=sub(),left=SHIP_FREE-s;
+  $('#ship').innerHTML=s?(left>0?`Plus que <b>${F(left)}</b> pour la livraison offerte au Cameroun`:'<b>Livraison offerte</b> au Cameroun')+`<div class="bar"><i style="width:${Math.min(100,s/SHIP_FREE*100)}%"></i></div>`:'';
+  $('#lines').innerHTML=cart.length?cart.map((l,i)=>{const p=P.find(x=>x.id===l.id);return `<div class="line"><div class="th">${vessel(p.s,l.g,p.d)}</div><div><h4>${p.n}</h4><small>Émail ${GLAZE[l.g][2]}</small><div class="qty"><button data-q="${i}" data-d="-1" aria-label="Moins">−</button><output>${l.q}</output><button data-q="${i}" data-d="1" aria-label="Plus">+</button></div><button class="rm" data-rm="${i}">Retirer</button></div><b>${F(p.p*l.q)}</b></div>`}).join(''):'<div class="empty"><svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 18h40l-4 32H12z"/><path d="M19 18a9 9 0 0 1 18 0"/></svg>Votre panier est vide.<br>Les plus belles pièces partent vite.</div>';
+  $('#dfoot').innerHTML=cart.length?`<form class="promo" id="pf"><input id="pc" placeholder="Code promo" value="${promo?promo.code:''}" aria-label="Code promo"><button>Appliquer</button></form><div class="pmsg" id="pm">${promo?`Code ${promo.code} appliqué : −${promo.pct} %`:''}</div>
+   <div class="tot"><span>Sous-total</span><span>${F(s)}</span></div>${promo?`<div class="tot"><span>Remise</span><span>−${F(disc())}</span></div>`:''}
+   <div class="tot big"><span>Total</span><span>${F(s-disc())}</span></div><button class="btn" id="go">Passer commande</button>`:'';
+  if(cart.length){$('#pf').onsubmit=e=>{e.preventDefault();const c=$('#pc').value.trim().toUpperCase(),C={BIENVENUE10:10,ATELIER15:15};
+    if(C[c]){promo={code:c,pct:C[c]};save();toast('Code appliqué')}else{promo=null;save();$('#pm').textContent='Ce code n\'existe pas ou a expiré.';$('#pm').classList.add('e')}};
+    $('#go').onclick=checkout}
+}
+$('#lines').onclick=e=>{const q=e.target.closest('[data-q]'),r=e.target.closest('[data-rm]');
+  if(q){const l=cart[q.dataset.q];l.q+=+q.dataset.d;if(l.q<1)cart.splice(q.dataset.q,1);save()}
+  if(r){cart.splice(r.dataset.rm,1);save()}};
+const openD=()=>{drawCart();$('#drawer').classList.add('on');$('#dveil').classList.add('on')};
+const closeD=()=>{$('#drawer').classList.remove('on');$('#dveil').classList.remove('on')};
+$('#cBtn').onclick=openD;$('#dClose').onclick=closeD;$('#dveil').onclick=closeD;
+
+// ——— Paiement ———
+const ZONES={dla:['Douala',2000],yde:['Yaoundé',3000],cm:['Autres villes du Cameroun',5000],eu:['Europe (Colissimo suivi)',18000]};
+function checkout(){
+  closeD();let step=0;const o={nom:'',tel:'',mail:'',adr:'',zone:'dla',pay:'om'};
+  modal.classList.add('on');document.body.classList.add('lock');
+  const ship=()=>ZONES[o.zone][0]!=='Europe (Colissimo suivi)'&&sub()-disc()>=SHIP_FREE?0:ZONES[o.zone][1];
+  const summary=()=>`<aside class="sum"><h3 style="font-size:24px;margin-bottom:14px">Récapitulatif</h3>${cart.map(l=>{const p=P.find(x=>x.id===l.id);return `<div class="line"><div class="th">${vessel(p.s,l.g,p.d)}</div><div><h4 style="font-size:16px">${p.n}</h4><small>${GLAZE[l.g][2]} · ×${l.q}</small></div><b>${F(p.p*l.q)}</b></div>`}).join('')}
+    <div class="tot"><span>Sous-total</span><span>${F(sub())}</span></div>${promo?`<div class="tot"><span>Remise ${promo.code}</span><span>−${F(disc())}</span></div>`:''}<div class="tot"><span>Livraison</span><span>${step?ship()?F(ship()):'Offerte':'À l\'étape suivante'}</span></div><div class="tot big"><span>Total</span><span>${F(sub()-disc()+(step?ship():0))}</span></div></aside>`;
+  const steps=()=>`<div class="steps">${['Coordonnées','Livraison','Paiement'].map((s,i)=>`<span class="${i===step?'on':i<step?'ok':''}">${i<step?'✓ ':''}${s}</span>${i<2?'<span>—</span>':''}`).join('')}</div>`;
+  const f=(id,l,t='text',ph='',full)=>`<label class="f ${full?'full':''}" id="w${id}">${l}<input id="${id}" type="${t}" placeholder="${ph}" value="${o[id]||''}"></label>`;
+  function draw(){
+    let body='';
+    if(step===0)body=`<div class="fs"><h3>Vos coordonnées</h3>${f('nom','Nom complet','text','Ruth Ngo Mbia')}${f('tel','Téléphone','tel','6 XX XX XX XX')}${f('mail','E-mail','email','vous@exemple.com',1)}${f('adr','Adresse de livraison','text','Quartier, rue, repère',1)}<p class="err" id="er"></p></div>`;
+    if(step===1)body=`<div class="fs"><h3>Livraison</h3><div class="opt">${Object.entries(ZONES).map(([k,[n,pr]])=>`<label><input type="radio" name="z" value="${k}" ${o.zone===k?'checked':''}><span>${n}<small>${k==='eu'?'6 à 10 jours':k==='cm'?'3 à 5 jours':'24 à 48 h, coursier Ocre'}</small></span><b>${k!=='eu'&&sub()-disc()>=SHIP_FREE?'Offerte':F(pr)}</b></label>`).join('')}</div></div>`;
+    if(step===2)body=`<div class="fs"><h3>Paiement</h3><div class="opt">${[['om','Orange Money','Validation sur votre téléphone'],['momo','MTN Mobile Money','Validation sur votre téléphone'],['cb','Carte bancaire','Visa, Mastercard — 3D Secure'],['cod','Paiement à la livraison','Douala et Yaoundé uniquement']].map(([k,n,s])=>`<label><input type="radio" name="p" value="${k}" ${o.pay===k?'checked':''}><span>${n}<small>${s}</small></span></label>`).join('')}</div><p class="err" id="er" style="color:var(--mute)">Démonstration : aucun paiement n'est réellement effectué.</p></div>`;
+    mbody.innerHTML=`<div class="co"><button class="x" data-close aria-label="Fermer">✕</button><div class="cog"><div class="cof"><span class="logo">OCRE</span>${steps()}${body}<div class="cob">${step?'<button class="back" id="bk">← Retour</button>':'<span></span>'}<button class="btn" id="nx">${step<2?'Continuer':'Payer '+F(sub()-disc()+ship())}</button></div></div>${summary()}</div></div>`;
+    $('#bk')&&($('#bk').onclick=()=>{step--;draw()});
+    $$('input[name=z]').forEach(i=>i.onchange=()=>{o.zone=i.value;draw()});
+    $$('input[name=p]').forEach(i=>i.onchange=()=>o.pay=i.value);
+    $('#nx').onclick=()=>{
+      if(step===0){['nom','tel','mail','adr'].forEach(k=>o[k]=$('#'+k).value.trim());
+        const bad={nom:o.nom.length<3,tel:!/^(\+?237)?6\d{8}$/.test(o.tel.replace(/\s/g,''))&&!/^\+?\d{9,14}$/.test(o.tel.replace(/\s/g,'')),mail:!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(o.mail),adr:o.adr.length<5};
+        Object.entries(bad).forEach(([k,v])=>$('#w'+k).classList.toggle('bad',v));
+        if(Object.values(bad).some(Boolean)){$('#er').textContent='Vérifiez les champs signalés en rouge.';return}}
+      if(step<2){step++;draw();return}
+      const ref='OC-'+Date.now().toString(36).slice(-6).toUpperCase(),total=sub()-disc()+ship();
+      mbody.innerHTML=`<div class="co"><div class="done"><div class="ok"><svg width="40" height="40" fill="none" stroke="#fff" stroke-width="2.5"><path d="M10 21l7 7 14-15"/></svg></div><h3>Merci ${o.nom.split(' ')[0]}.</h3><p>Votre commande de ${F(total)} est confirmée. ${o.pay==='cod'?'Vous réglerez à la livraison.':'Le paiement a été validé.'} Livraison : ${ZONES[o.zone][0]}.</p><p style="margin:18px 0 28px">Numéro de commande <code>${ref}</code></p><button class="btn" data-close>Retour à la boutique</button></div></div>`;
+      cart=[];promo=null;save();
+    };
+  }
+  draw();
+}
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2200)}
+render();badges();drawCart();
+</script>
+</body>
+</html>
