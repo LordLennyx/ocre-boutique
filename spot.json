@@ -1,7 +1,7 @@
 {
  "titre": "<em>Ocre</em>, boutique en ligne",
  "type": "E-commerce · Boutique",
- "sous_titre": "Catalogue, fiche produit, panier, paiement Mobile Money",
+ "sous_titre": "Catalogue, fiche produit, panier, paiement carte et PayPal",
  "couleur": "#c8772e",
  "graine": 3,
  "voix": [
@@ -15,7 +15,7 @@
   ],
   [
    17.0,
-   "panier, code promo, et paiement par Mobile Money, ou par carte."
+   "panier, code promo, et paiement par carte, ou par PayPal."
   ]
  ],
  "etapes": [

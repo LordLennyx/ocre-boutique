@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ocre — Céramiques façonnées à la main</title>
-<meta name="description" content="Ocre, atelier de céramique : vases, bols, tasses et pichets tournés à la main. Livraison au Cameroun et en Europe.">
+<meta name="description" content="Ocre, atelier de céramique : vases, bols, tasses et pichets tournés à la main. Livraison en France et en Europe.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c8772e'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23efe7dc'/%3E%3C/svg%3E">
@@ -205,7 +205,7 @@ footer{background:var(--char);color:#b8ae9f;padding:70px 0 34px;font-size:14px}
 </style>
 </head>
 <body>
-<div class="top">Livraison offerte dès <b>60 000 F</b> au Cameroun · Code <b>BIENVENUE10</b> : −10 % sur votre première commande</div>
+<div class="top">Livraison offerte dès <b>80 €</b> en France · Code <b>BIENVENUE10</b> : −10 % sur votre première commande</div>
 <header>
   <div class="wrap nav">
     <nav class="l"><a href="#boutique" data-cat="Vases">Vases</a><a href="#boutique" data-cat="Bols">Bols</a><a href="#boutique" data-cat="Tasses">Tasses</a><a href="#boutique" data-cat="Pichets">Pichets</a><a href="#atelier">L'atelier</a></nav>
@@ -246,7 +246,7 @@ footer{background:var(--char);color:#b8ae9f;padding:70px 0 34px;font-size:14px}
       <aside class="filters">
         <div><h4>Catégorie</h4><div id="cats"></div></div>
         <div><h4>Émail</h4><div class="sw" id="glz"></div></div>
-        <div><h4>Prix maximum</h4><input type="range" id="price" min="8000" max="70000" step="1000" value="70000" aria-label="Prix maximum"><div class="prange"><span>8 000 F</span><b id="pv"></b></div></div>
+        <div><h4>Prix maximum</h4><input type="range" id="price" min="15" max="120" step="1" value="120" aria-label="Prix maximum"><div class="prange"><span>15 €</span><b id="pv"></b></div></div>
         <button class="reset" id="reset">Réinitialiser les filtres</button>
       </aside>
       <div class="grid" id="grid"></div>
@@ -283,7 +283,7 @@ footer{background:var(--char);color:#b8ae9f;padding:70px 0 34px;font-size:14px}
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const F=n=>Math.round(n).toLocaleString('fr-FR').replace(/ /g,' ')+' F';
+const F=n=>(Math.round(n*100)/100).toLocaleString('fr-FR',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2}).replace(/ /g,' ')+' €';
 
 // ——— Émaux et silhouettes ———
 const GLAZE={laterite:['#b4532a','#7e3216','Latérite'],sable:['#e4d3b4','#c2a77e','Sable'],foret:['#3f5a45','#22362a','Forêt'],nuit:['#2b3242','#141821','Nuit'],celadon:['#a9c2b0','#7d9a86','Céladon'],miel:['#d79a3f','#a2661d','Miel']};
@@ -327,18 +327,18 @@ function vessel(shape,glaze,deco){
 
 // ——— Catalogue ———
 const P=[
- {id:1,n:'Vase Ndop',c:'Vases',s:'amphore',g:['laterite','nuit','sable'],d:'coulure',p:48000,pop:98,nw:0,st:4,h:'32 cm'},
- {id:2,n:'Bouteille Lom',c:'Vases',s:'bouteille',g:['foret','celadon'],d:'lignes',p:36000,pop:87,nw:1,st:12,h:'34 cm'},
- {id:3,n:'Vase Mbam',c:'Vases',s:'boule',g:['miel','laterite'],d:'points',p:42000,pop:91,nw:1,st:2,h:'26 cm'},
- {id:4,n:'Haut vase Sanaga',c:'Vases',s:'haut',g:['nuit','sable'],d:'zigzag',p:62000,pop:76,nw:0,st:6,h:'40 cm'},
- {id:5,n:'Bol Kribi',c:'Bols',s:'bol',g:['celadon','sable','foret'],d:'lignes',p:14000,pop:95,nw:0,st:30,h:'Ø 18 cm'},
- {id:6,n:'Coupe Wouri',c:'Bols',s:'coupe',g:['sable','miel'],d:'coulure',p:22000,pop:83,nw:1,st:9,h:'Ø 24 cm'},
- {id:7,n:'Tasse Dschang',c:'Tasses',s:'tasse',g:['laterite','foret','nuit'],d:'points',p:9500,pop:99,nw:0,st:40,h:'25 cl'},
- {id:8,n:'Tasse Bafut',c:'Tasses',s:'tasse',g:['sable','celadon'],d:'zigzag',p:10500,pop:80,nw:1,st:3,h:'30 cl'},
- {id:9,n:'Pichet Noun',c:'Pichets',s:'pichet',g:['miel','foret'],d:'lignes',p:32000,pop:88,nw:0,st:7,h:'1 L'},
- {id:10,n:'Bol Nyong',c:'Bols',s:'bol',g:['nuit','laterite'],d:'zigzag',p:16000,pop:72,nw:0,st:18,h:'Ø 20 cm'},
- {id:11,n:'Pichet Menoua',c:'Pichets',s:'pichet',g:['celadon','sable'],d:'coulure',p:35000,pop:69,nw:1,st:5,h:'1,2 L'},
- {id:12,n:'Bouteille Mungo',c:'Vases',s:'bouteille',g:['laterite','miel'],d:'points',p:38000,pop:78,nw:0,st:1,h:'34 cm'}
+ {id:1,n:'Vase Ndop',c:'Vases',s:'amphore',g:['laterite','nuit','sable'],d:'coulure',p:89,pop:98,nw:0,st:4,h:'32 cm'},
+ {id:2,n:'Bouteille Lom',c:'Vases',s:'bouteille',g:['foret','celadon'],d:'lignes',p:65,pop:87,nw:1,st:12,h:'34 cm'},
+ {id:3,n:'Vase Mbam',c:'Vases',s:'boule',g:['miel','laterite'],d:'points',p:75,pop:91,nw:1,st:2,h:'26 cm'},
+ {id:4,n:'Haut vase Sanaga',c:'Vases',s:'haut',g:['nuit','sable'],d:'zigzag',p:120,pop:76,nw:0,st:6,h:'40 cm'},
+ {id:5,n:'Bol Kribi',c:'Bols',s:'bol',g:['celadon','sable','foret'],d:'lignes',p:28,pop:95,nw:0,st:30,h:'Ø 18 cm'},
+ {id:6,n:'Coupe Wouri',c:'Bols',s:'coupe',g:['sable','miel'],d:'coulure',p:42,pop:83,nw:1,st:9,h:'Ø 24 cm'},
+ {id:7,n:'Tasse Dschang',c:'Tasses',s:'tasse',g:['laterite','foret','nuit'],d:'points',p:19,pop:99,nw:0,st:40,h:'25 cl'},
+ {id:8,n:'Tasse Bafut',c:'Tasses',s:'tasse',g:['sable','celadon'],d:'zigzag',p:22,pop:80,nw:1,st:3,h:'30 cl'},
+ {id:9,n:'Pichet Noun',c:'Pichets',s:'pichet',g:['miel','foret'],d:'lignes',p:58,pop:88,nw:0,st:7,h:'1 L'},
+ {id:10,n:'Bol Nyong',c:'Bols',s:'bol',g:['nuit','laterite'],d:'zigzag',p:32,pop:72,nw:0,st:18,h:'Ø 20 cm'},
+ {id:11,n:'Pichet Menoua',c:'Pichets',s:'pichet',g:['celadon','sable'],d:'coulure',p:64,pop:69,nw:1,st:5,h:'1,2 L'},
+ {id:12,n:'Bouteille Mungo',c:'Vases',s:'bouteille',g:['laterite','miel'],d:'points',p:69,pop:78,nw:0,st:1,h:'34 cm'}
 ];
 const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem('ocre-'+k))??d}catch{return d}},set:(k,v)=>{try{localStorage.setItem('ocre-'+k,JSON.stringify(v))}catch{}}};
 let cart=store.get('cart',[]),wish=store.get('wish',[]),promo=store.get('promo',null);
@@ -361,7 +361,7 @@ function render(){
     <div class="meta"><div><h3>${p.n}</h3><span class="sub">${p.c} · ${p.h}</span></div><span class="pr">${F(p.p)}</span></div>
     <div class="dots">${p.g.map(k=>`<i style="background:${GLAZE[k][0]}"></i>`).join('')}</div></article>`}).join(''):'<p class="none">Aucune pièce ne correspond. <button class="reset" onclick="resetF()">Tout afficher</button></p>';
 }
-function resetF(){state.cats.clear();state.glz=null;state.max=70000;state.q='';$('#q').value='';$('#price').value=70000;$$('#cats input').forEach(i=>i.checked=false);$$('#glz button').forEach(b=>b.classList.remove('on'));render()}
+function resetF(){state.cats.clear();state.glz=null;state.max=120;state.q='';$('#q').value='';$('#price').value=120;$$('#cats input').forEach(i=>i.checked=false);$$('#glz button').forEach(b=>b.classList.remove('on'));render()}
 $('#cats').onchange=e=>{e.target.checked?state.cats.add(e.target.value):state.cats.delete(e.target.value);render()};
 $('#glz').onclick=e=>{const b=e.target.closest('button');if(!b)return;state.glz=state.glz===b.dataset.g?null:b.dataset.g;$$('#glz button').forEach(x=>x.classList.toggle('on',x.dataset.g===state.glz));render()};
 $('#price').oninput=e=>{state.max=+e.target.value;render()};
@@ -400,7 +400,7 @@ modal.onclick=e=>{if(e.target.closest('[data-close]'))closeM()};
 addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();closeD()}});
 
 // ——— Panier ———
-const SHIP_FREE=60000;
+const SHIP_FREE=80;
 function add(id,g,q){const l=cart.find(x=>x.id===id&&x.g===g);l?l.q+=q:cart.push({id,g,q});save();openD()}
 const save=()=>{store.set('cart',cart);store.set('promo',promo);badges();drawCart()};
 const sub=()=>cart.reduce((s,l)=>s+P.find(p=>p.id===l.id).p*l.q,0);
@@ -408,7 +408,7 @@ const disc=()=>promo?Math.round(sub()*promo.pct/100):0;
 function badges(){const n=cart.reduce((s,l)=>s+l.q,0);$('#cN').textContent=n;$('#cN').classList.toggle('on',n>0);$('#wN').textContent=wish.length;$('#wN').classList.toggle('on',wish.length>0)}
 function drawCart(){
   const s=sub(),left=SHIP_FREE-s;
-  $('#ship').innerHTML=s?(left>0?`Plus que <b>${F(left)}</b> pour la livraison offerte au Cameroun`:'<b>Livraison offerte</b> au Cameroun')+`<div class="bar"><i style="width:${Math.min(100,s/SHIP_FREE*100)}%"></i></div>`:'';
+  $('#ship').innerHTML=s?(left>0?`Plus que <b>${F(left)}</b> pour la livraison offerte en France`:'<b>Livraison offerte</b> en France')+`<div class="bar"><i style="width:${Math.min(100,s/SHIP_FREE*100)}%"></i></div>`:'';
   $('#lines').innerHTML=cart.length?cart.map((l,i)=>{const p=P.find(x=>x.id===l.id);return `<div class="line"><div class="th">${vessel(p.s,l.g,p.d)}</div><div><h4>${p.n}</h4><small>Émail ${GLAZE[l.g][2]}</small><div class="qty"><button data-q="${i}" data-d="-1" aria-label="Moins">−</button><output>${l.q}</output><button data-q="${i}" data-d="1" aria-label="Plus">+</button></div><button class="rm" data-rm="${i}">Retirer</button></div><b>${F(p.p*l.q)}</b></div>`}).join(''):'<div class="empty"><svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 18h40l-4 32H12z"/><path d="M19 18a9 9 0 0 1 18 0"/></svg>Votre panier est vide.<br>Les plus belles pièces partent vite.</div>';
   $('#dfoot').innerHTML=cart.length?`<form class="promo" id="pf"><input id="pc" placeholder="Code promo" value="${promo?promo.code:''}" aria-label="Code promo"><button>Appliquer</button></form><div class="pmsg" id="pm">${promo?`Code ${promo.code} appliqué : −${promo.pct} %`:''}</div>
    <div class="tot"><span>Sous-total</span><span>${F(s)}</span></div>${promo?`<div class="tot"><span>Remise</span><span>−${F(disc())}</span></div>`:''}
@@ -425,20 +425,20 @@ const closeD=()=>{$('#drawer').classList.remove('on');$('#dveil').classList.remo
 $('#cBtn').onclick=openD;$('#dClose').onclick=closeD;$('#dveil').onclick=closeD;
 
 // ——— Paiement ———
-const ZONES={dla:['Douala',2000],yde:['Yaoundé',3000],cm:['Autres villes du Cameroun',5000],eu:['Europe (Colissimo suivi)',18000]};
+const ZONES={dla:['France métropolitaine (Colissimo)',4.9],yde:['Belgique, Luxembourg, Suisse',9.9],cm:['Reste de l\'Europe',12.9],eu:['International (DHL Express)',29]};
 function checkout(){
   closeD();let step=0;const o={nom:'',tel:'',mail:'',adr:'',zone:'dla',pay:'om'};
   modal.classList.add('on');document.body.classList.add('lock');
-  const ship=()=>ZONES[o.zone][0]!=='Europe (Colissimo suivi)'&&sub()-disc()>=SHIP_FREE?0:ZONES[o.zone][1];
+  const ship=()=>ZONES[o.zone][0]!=='International (DHL Express)'&&sub()-disc()>=SHIP_FREE?0:ZONES[o.zone][1];
   const summary=()=>`<aside class="sum"><h3 style="font-size:24px;margin-bottom:14px">Récapitulatif</h3>${cart.map(l=>{const p=P.find(x=>x.id===l.id);return `<div class="line"><div class="th">${vessel(p.s,l.g,p.d)}</div><div><h4 style="font-size:16px">${p.n}</h4><small>${GLAZE[l.g][2]} · ×${l.q}</small></div><b>${F(p.p*l.q)}</b></div>`}).join('')}
     <div class="tot"><span>Sous-total</span><span>${F(sub())}</span></div>${promo?`<div class="tot"><span>Remise ${promo.code}</span><span>−${F(disc())}</span></div>`:''}<div class="tot"><span>Livraison</span><span>${step?ship()?F(ship()):'Offerte':'À l\'étape suivante'}</span></div><div class="tot big"><span>Total</span><span>${F(sub()-disc()+(step?ship():0))}</span></div></aside>`;
   const steps=()=>`<div class="steps">${['Coordonnées','Livraison','Paiement'].map((s,i)=>`<span class="${i===step?'on':i<step?'ok':''}">${i<step?'✓ ':''}${s}</span>${i<2?'<span>—</span>':''}`).join('')}</div>`;
   const f=(id,l,t='text',ph='',full)=>`<label class="f ${full?'full':''}" id="w${id}">${l}<input id="${id}" type="${t}" placeholder="${ph}" value="${o[id]||''}"></label>`;
   function draw(){
     let body='';
-    if(step===0)body=`<div class="fs"><h3>Vos coordonnées</h3>${f('nom','Nom complet','text','Ruth Ngo Mbia')}${f('tel','Téléphone','tel','6 XX XX XX XX')}${f('mail','E-mail','email','vous@exemple.com',1)}${f('adr','Adresse de livraison','text','Quartier, rue, repère',1)}<p class="err" id="er"></p></div>`;
-    if(step===1)body=`<div class="fs"><h3>Livraison</h3><div class="opt">${Object.entries(ZONES).map(([k,[n,pr]])=>`<label><input type="radio" name="z" value="${k}" ${o.zone===k?'checked':''}><span>${n}<small>${k==='eu'?'6 à 10 jours':k==='cm'?'3 à 5 jours':'24 à 48 h, coursier Ocre'}</small></span><b>${k!=='eu'&&sub()-disc()>=SHIP_FREE?'Offerte':F(pr)}</b></label>`).join('')}</div></div>`;
-    if(step===2)body=`<div class="fs"><h3>Paiement</h3><div class="opt">${[['om','Orange Money','Validation sur votre téléphone'],['momo','MTN Mobile Money','Validation sur votre téléphone'],['cb','Carte bancaire','Visa, Mastercard — 3D Secure'],['cod','Paiement à la livraison','Douala et Yaoundé uniquement']].map(([k,n,s])=>`<label><input type="radio" name="p" value="${k}" ${o.pay===k?'checked':''}><span>${n}<small>${s}</small></span></label>`).join('')}</div><p class="err" id="er" style="color:var(--mute)">Démonstration : aucun paiement n'est réellement effectué.</p></div>`;
+    if(step===0)body=`<div class="fs"><h3>Vos coordonnées</h3>${f('nom','Nom complet','text','Camille Durand')}${f('tel','Téléphone','tel','06 12 34 56 78')}${f('mail','E-mail','email','vous@exemple.com',1)}${f('adr','Adresse de livraison','text','Numéro, rue, code postal, ville',1)}<p class="err" id="er"></p></div>`;
+    if(step===1)body=`<div class="fs"><h3>Livraison</h3><div class="opt">${Object.entries(ZONES).map(([k,[n,pr]])=>`<label><input type="radio" name="z" value="${k}" ${o.zone===k?'checked':''}><span>${n}<small>${k==='eu'?'5 à 8 jours':k==='cm'?'4 à 6 jours':k==='yde'?'3 à 4 jours':'48 à 72 h'}</small></span><b>${k!=='eu'&&sub()-disc()>=SHIP_FREE?'Offerte':F(pr)}</b></label>`).join('')}</div></div>`;
+    if(step===2)body=`<div class="fs"><h3>Paiement</h3><div class="opt">${[['om','Carte bancaire','CB, Visa, Mastercard — 3D Secure'],['momo','PayPal','Paiement en 4 fois possible'],['cb','Apple Pay ou Google Pay','Validation sur votre téléphone'],['cod','Virement bancaire','Expédition à réception du virement']].map(([k,n,s])=>`<label><input type="radio" name="p" value="${k}" ${o.pay===k?'checked':''}><span>${n}<small>${s}</small></span></label>`).join('')}</div><p class="err" id="er" style="color:var(--mute)">Démonstration : aucun paiement n'est réellement effectué.</p></div>`;
     mbody.innerHTML=`<div class="co"><button class="x" data-close aria-label="Fermer">✕</button><div class="cog"><div class="cof"><span class="logo">OCRE</span>${steps()}${body}<div class="cob">${step?'<button class="back" id="bk">← Retour</button>':'<span></span>'}<button class="btn" id="nx">${step<2?'Continuer':'Payer '+F(sub()-disc()+ship())}</button></div></div>${summary()}</div></div>`;
     $('#bk')&&($('#bk').onclick=()=>{step--;draw()});
     $$('input[name=z]').forEach(i=>i.onchange=()=>{o.zone=i.value;draw()});
